@@ -1,3 +1,5 @@
+import { Aspects } from 'aws-cdk-lib';
+import { AwsSolutionsChecks } from "cdk-nag"
 import { SSTConfig } from "sst";
 import { ExampleStack } from "./stacks/ExampleStack";
 
@@ -9,6 +11,7 @@ export default {
     };
   },
   stacks(app) {
+    Aspects.of(app).add(new AwsSolutionsChecks({ verbose: true }))
     app.stack(ExampleStack);
   }
 } satisfies SSTConfig;
